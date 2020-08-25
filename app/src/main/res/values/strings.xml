@@ -3,4 +3,9 @@
     <string name="button_label">CLICK ME</string>
     <string name="small_text_even">Hello World!</string>
     <string name="small_text_odd">Goodbye Summer</string>
+    <string name="switch_text_button_label">Switch Text</string>
+    <string name="clear_text_button">Clear Text</string>
+    <string name="card_title">Title</string>
+    <string name="card_subtitle">Subtitle</string>
+    <string name="content_description_media">Image</string>
 </resources>

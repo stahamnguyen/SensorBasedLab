@@ -12,17 +12,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var oddClick = true
+        val availableSubtitles = listOf<String>("Oh, this is the first subtitle", "Oh, another subtitle")
 
-        button.setOnClickListener {
-            textview_small.text = if (oddClick) getString(R.string.small_text_odd) else getString(R.string.small_text_even)
-            oddClick = !oddClick
+        switch_text_button.setOnClickListener {
+            textview_subtitle.text = availableSubtitles[availableSubtitles.indices.random()]
         }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.menu, menu);
-        return true;
+        clear_text_button.setOnClickListener {
+            textview_subtitle.text = ""
+        }
     }
 }
