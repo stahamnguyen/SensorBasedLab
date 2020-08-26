@@ -8,4 +8,6 @@
     <string name="clear_text_button">Xóa Câu</string>
     <string name="card_title">Tiêu Đề</string>
     <string name="card_subtitle">Phụ Đề</string>
+    <string name="snackbar_message_subtitle_change">Phụ đề đã được thay đổi</string>
+    <string name="snackbar_message_subtitle_inact">Phụ đề không đổi</string>
 </resources>

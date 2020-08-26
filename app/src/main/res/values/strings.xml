@@ -8,4 +8,7 @@
     <string name="card_title">Title</string>
     <string name="card_subtitle">Subtitle</string>
     <string name="content_description_media">Image</string>
+    <string name="snackbar_message_subtitle_change">The subtitle has been changed!</string>
+    <string name="action_ok" translatable="false">OK</string>
+    <string name="snackbar_message_subtitle_inact">The subtitle has not been changed</string>
 </resources>
