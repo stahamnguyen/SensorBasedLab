@@ -11,4 +11,8 @@
     <string name="snackbar_message_subtitle_change">The subtitle has been changed!</string>
     <string name="action_ok" translatable="false">OK</string>
     <string name="snackbar_message_subtitle_inact">The subtitle has not been changed</string>
+    <string name="channel_name" translatable="false">Lab 3</string>
+    <string name="channel_description" translatable="false">Clear the subtitle</string>
+    <string name="notify_title" translatable="false">Lab 3</string>
+    <string name="notif_content">The subtitle has been cleared</string>
 </resources>
