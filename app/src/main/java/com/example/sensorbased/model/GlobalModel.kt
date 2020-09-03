@@ -15,5 +15,6 @@ object GlobalModel {
     presidents.add(President(name = "Mauno Koivisto", startingYear = 1982, endingYear = 1994, description = "Manu"))
     presidents.add(President(name = "Martti Ahtisaari", startingYear = 1994, endingYear = 2000, description = "Mahtisaari"))
     presidents.add(President(name = "Tarja Halonen", startingYear = 2000, endingYear = 2012, description = "Eka naispresidentti"))
+    presidents.sortBy { it.startingYear }
   }
 }

@@ -5,7 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sensorbased.model.President
 
-class FinnishPresidentsRecyclerViewAdapter(private val data: MutableList<President>) : RecyclerView.Adapter<FinnishPresidentViewHolder>() {
+interface FinnishPresidentRecyclerViewClickListener {
+  fun presidentItemClicked(president: President)
+}
+
+class FinnishPresidentsRecyclerViewAdapter(private val data: MutableList<President>, val clickListener: FinnishPresidentRecyclerViewClickListener) : RecyclerView.Adapter<FinnishPresidentViewHolder>() {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinnishPresidentViewHolder {
     val view = LayoutInflater.from(parent.context)
       .inflate(R.layout.finnish_president_view_holder, parent, false)
@@ -16,6 +20,8 @@ class FinnishPresidentsRecyclerViewAdapter(private val data: MutableList<Preside
     holder.nameTextView.text = data[position].name
     holder.startingYearTextView.text = data[position].startingYear.toString()
     holder.endingYearTextView.text = data[position].endingYear.toString()
+
+    holder.itemView.setOnClickListener { clickListener.presidentItemClicked(data[position]) }
   }
 
   override fun getItemCount(): Int {
