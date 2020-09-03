@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Lab1</string>
-    <string name="button_label">CLICK ME</string>
-    <string name="small_text_even">Hello World!</string>
-    <string name="small_text_odd">Goodbye Summer</string>
+    <string name="app_name" translatable="false">Lab 4</string>
+    <string name="placeholder_text" translatable="false">I\'m waiting for the text to come</string>
 </resources>

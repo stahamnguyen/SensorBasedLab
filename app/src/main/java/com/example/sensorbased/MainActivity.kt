@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     Handler(Looper.getMainLooper()) {
       override fun handleMessage(inputMessage: Message) {
         if (inputMessage.what == 0) {
-//          txt_network.text = inputMessage.obj.toString()
+          network_text.text = inputMessage.obj.toString()
         }
       }
   }
