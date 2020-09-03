@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">Lab1</string>
-    <string name="button_label">CLICK ME</string>
-    <string name="small_text_even">Hello World!</string>
-    <string name="small_text_odd">Goodbye Summer</string>
+    <string name="president_info_placeholder" translatable="false">President Info</string>
+    <string name="president_desc_placeholder" translatable="false">President Description</string>
 </resources>
