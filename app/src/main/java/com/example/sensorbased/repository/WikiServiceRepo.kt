@@ -6,7 +6,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class WikiServiceRepo(private val wikiService: WikiService) {
+class WikiServiceRepo() {
+  private val wikiService: WikiService = WikiService.instance
+
   fun getNumberOfLinks(presidentName: String, callback: (WikiResponse.Query.SearchInfo?) -> Unit) {
     val wikiCall = wikiService.searchNumberOfLinksByPresident(presidentName)
     wikiCall.enqueue(object : Callback<WikiResponse> {
