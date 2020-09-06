@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sensorbased.model.President
+import com.example.sensorbased.ui.FinnishPresidentViewHolder
 
 interface FinnishPresidentRecyclerViewClickListener {
   fun presidentItemClicked(president: President)

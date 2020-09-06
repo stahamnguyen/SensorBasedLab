@@ -2,4 +2,5 @@
     <string name="app_name" translatable="false">Lab1</string>
     <string name="president_info_placeholder" translatable="false">President Info</string>
     <string name="president_desc_placeholder" translatable="false">President Description</string>
+    <string name="hit_placeholder" translatable="false">Number of Links</string>
 </resources>

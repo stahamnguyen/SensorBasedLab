@@ -1,8 +1,9 @@
-package com.example.sensorbased
+package com.example.sensorbased.ui
 
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sensorbased.R
 
 class FinnishPresidentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
   val nameTextView: TextView = itemView.findViewById(R.id.name_text_view)
