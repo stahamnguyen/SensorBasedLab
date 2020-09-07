@@ -4,18 +4,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+  private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-        var oddClick = true
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
 
-        button.setOnClickListener {
-            textview_small.text = if (oddClick) getString(R.string.small_text_odd) else getString(R.string.small_text_even)
-            oddClick = !oddClick
-        }
-    }
+    setupLocationClient()
+  }
+
+  private fun setupLocationClient() {
+    fusedLocationClient =
+      LocationServices.getFusedLocationProviderClient(this)
+  }
 }
