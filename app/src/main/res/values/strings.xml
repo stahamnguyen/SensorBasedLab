@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Lab1</string>
-    <string name="button_label">CLICK ME</string>
-    <string name="small_text_even">Hello World!</string>
-    <string name="small_text_odd">Goodbye Summer</string>
+    <string name="app_name" translatable="false">Lab 8</string>
+    <string name="small_text_even" translatable="false">Distance will display here</string>
+    <string name="info_placeholder" translatable="false">Location name</string>
 </resources>
