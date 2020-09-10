@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     private fun processScanResult(result: ScanResult?) {
       if (result != null) {
         val device = result.device
-        adapter?.addData(BluetoothDevice(device.name, device.address, result.rssi.toString()))
+        adapter?.addData(BluetoothDevice(device.name, device.address, result.rssi.toString(), result.isConnectable))
         adapter?.notifyDataSetChanged()
       }
     }

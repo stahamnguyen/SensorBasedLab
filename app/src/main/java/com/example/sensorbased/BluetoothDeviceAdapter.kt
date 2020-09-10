@@ -1,6 +1,7 @@
 package com.example.sensorbased
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,18 @@ class BluetoothDeviceAdapter(private val context: Context, private val items: Ar
     mac_address_text_view.text = currentBluetoothDevice.macAddress
     rssi_text_view.text = currentBluetoothDevice.rssi
 
+    if (!currentBluetoothDevice.isConnectible) {
+      actualConvertView.isEnabled = false
+      device_name_text_view.setTextColor(Color.GRAY)
+      mac_address_text_view.setTextColor(Color.GRAY)
+      rssi_text_view.setTextColor(Color.GRAY)
+    }
+
     return actualConvertView
+  }
+
+  override fun isEnabled(position: Int): Boolean {
+    return items[position].isConnectible
   }
 
   fun addData(data: BluetoothDevice) {
