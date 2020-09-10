@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class BluetoothDeviceAdapter(val context: Context, val items: ArrayList<BluetoothDevice>) : BaseAdapter() {
+class BluetoothDeviceAdapter(private val context: Context, private val items: ArrayList<BluetoothDevice>) : BaseAdapter() {
   override fun getCount(): Int {
     return items.size
   }
@@ -21,12 +21,8 @@ class BluetoothDeviceAdapter(val context: Context, val items: ArrayList<Bluetoot
   }
 
   override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-    var actualConvertView: View;
-    if (convertView == null) {
-      actualConvertView = LayoutInflater.from(context).inflate(R.layout.activity_listview, parent, false)
-    } else {
-      actualConvertView = convertView
-    }
+    var actualConvertView: View =
+      convertView ?: LayoutInflater.from(context).inflate(R.layout.activity_listview, parent, false)
 
     val currentBluetoothDevice = getItem(position)
     val device_name_text_view = actualConvertView.findViewById<TextView>(R.id.device_name_text_view);
@@ -38,5 +34,9 @@ class BluetoothDeviceAdapter(val context: Context, val items: ArrayList<Bluetoot
     rssi_text_view.text = currentBluetoothDevice.rssi
 
     return actualConvertView
+  }
+
+  fun addData(data: BluetoothDevice) {
+    items.add(data)
   }
 }
