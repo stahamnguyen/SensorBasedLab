@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name" translatable="false">Lab1</string>
-    <string name="button_label">CLICK ME</string>
-    <string name="small_text_even">Hello World!</string>
-    <string name="small_text_odd">Goodbye Summer</string>
+    <string name="app_name" translatable="false">Lab 10</string>
+    <string name="button_label" translatable="false">START SCANNING</string>
+    <string name="device_name_placeholder" translatable="false">Device name</string>
+    <string name="mac_address_placeholder" translatable="false">Mac address</string>
+    <string name="rssi_placeholder" translatable="false">RSSI</string>
 </resources>
