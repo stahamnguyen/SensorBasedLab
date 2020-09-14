@@ -1,21 +1,36 @@
 package com.example.sensorbased
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.provider.MediaStore
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+  companion object {
+    const val REQUEST_IMAGE_CAPTURE = 99
+  }
 
-        var oddClick = true
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
 
-        button.setOnClickListener {
-            textview_small.text = if (oddClick) getString(R.string.small_text_odd) else getString(R.string.small_text_even)
-            oddClick = !oddClick
-        }
+    val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+    if (cameraIntent.resolveActivity(packageManager) != null) {
+      startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
     }
+  }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+
+    if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+      val extras = data!!.extras
+      val imageBitmap = extras!!.get("data") as Bitmap
+
+      image_view.setImageBitmap(imageBitmap)
+    }
+  }
 }
