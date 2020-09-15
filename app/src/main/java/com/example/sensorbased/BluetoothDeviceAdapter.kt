@@ -39,6 +39,11 @@ class BluetoothDeviceAdapter(private val context: Context, private val items: Ar
       device_name_text_view.setTextColor(Color.GRAY)
       mac_address_text_view.setTextColor(Color.GRAY)
       rssi_text_view.setTextColor(Color.GRAY)
+    } else {
+      actualConvertView.isEnabled = true
+      device_name_text_view.setTextColor(Color.WHITE)
+      mac_address_text_view.setTextColor(Color.WHITE)
+      rssi_text_view.setTextColor(Color.WHITE)
     }
 
     return actualConvertView
@@ -49,6 +54,8 @@ class BluetoothDeviceAdapter(private val context: Context, private val items: Ar
   }
 
   fun addData(data: BluetoothDevice) {
-    items.add(data)
+    if (!items.map { it.macAddress }.contains(data.macAddress)) {
+      items.add(data)
+    }
   }
 }
