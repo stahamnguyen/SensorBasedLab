@@ -9,10 +9,12 @@ import android.bluetooth.le.ScanResult
 import android.bluetooth.le.ScanSettings
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -66,11 +68,13 @@ class MainActivity : AppCompatActivity() {
   }
 
   private inner class BluetoothLEScanCallback : ScanCallback() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onScanResult(callbackType: Int, result: ScanResult?) {
       println(result);
       processScanResult(result)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBatchScanResults(results: MutableList<ScanResult>?) {
       println(results);
       if (results != null) {
@@ -84,10 +88,11 @@ class MainActivity : AppCompatActivity() {
       Log.d("DBG", "BLE Scan Failed with code $errorCode")
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun processScanResult(result: ScanResult?) {
       if (result != null) {
         val device = result.device
-        adapter?.addData(BluetoothDevice(device.name, device.address, result.rssi.toString(), result.isConnectable))
+        adapter?.addData(BluetoothDevice(device.name ?: "Unknown", device.address, result.rssi.toString(), result.isConnectable))
         adapter?.notifyDataSetChanged()
       }
     }
