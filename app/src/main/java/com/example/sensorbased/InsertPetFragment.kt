@@ -1,59 +1,77 @@
 package com.example.sensorbased
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Spinner
+import com.example.sensorbased.model.Pet
+import com.example.sensorbased.model.User
+import com.example.sensorbased.model.UserPetDB
+import kotlinx.android.synthetic.main.fragment_insert_pet.*
+import kotlinx.android.synthetic.main.fragment_insert_user.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import android.widget.ArrayAdapter
+import androidx.core.view.get
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.example.sensorbased.model.UserAndAllPets
+import com.example.sensorbased.viewmodel.UserModel
+import kotlinx.android.synthetic.main.activity_main.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [InsertPetFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class InsertPetFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var db: UserPetDB
+    private val usernames: MutableList<String> = mutableListOf()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        db = UserPetDB.get(context)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_insert_pet, container, false)
+        val view = inflater.inflate(R.layout.fragment_insert_pet, container, false)
+
+        val userSpinner = view.findViewById<Spinner>(R.id.user_spinner);
+        val spinnerAdapter = ArrayAdapter(this.requireContext(), R.layout.spinner_item, usernames)
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
+        userSpinner.adapter = spinnerAdapter
+
+        val viewModel = ViewModelProviders.of(this).get(UserModel::class.java)
+        viewModel.getUsers().observe(this, Observer { it ->
+            val fetchedUsernames = it.toTypedArray().map { user -> user.name }
+            fetchedUsernames.forEach { fetchedUsername -> usernames.add(fetchedUsername) }
+            (userSpinner.adapter as ArrayAdapter<*>).notifyDataSetChanged()
+        })
+
+        val insertButton = view.findViewById<Button>(R.id.button_insert);
+        insertButton.setOnClickListener {
+            val petName = text_field_pet.text.toString()
+            val username = userSpinner.selectedItem.toString()
+            GlobalScope.launch {
+                val id = db.petDao().insert(Pet(name = petName, ownerName = username))
+            }
+        }
+        return view
+    }
+
+    override fun onDetach() {
+        super.onDetach()
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment InsertPetFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            InsertPetFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance(): InsertPetFragment {
+            return InsertPetFragment()
+        }
     }
 }

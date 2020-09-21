@@ -3,9 +3,9 @@ package com.example.sensorbased.model
 import androidx.room.Embedded
 import androidx.room.Relation
 
-class UserAndAllPets {
+data class UserAndAllPets(
     @Embedded
-    var user: User? = null
+    var user: User,
     @Relation(parentColumn = "name", entityColumn = "ownerName")
-    var pets: List<Pet>? = null
-}
+    var pets: MutableList<Pet>,
+)
