@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         val petViewModel = ViewModelProviders.of(this).get(PetModel::class.java)
         petViewModel.getPets().observe(this, {
-            println(it.size)
             it.forEach { pet ->
                 (recycler_view.adapter as UserPetRecyclerViewAdapter).updatePet(pet)
             }

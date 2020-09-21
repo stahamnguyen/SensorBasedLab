@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import com.example.sensorbased.model.User
 import com.example.sensorbased.model.UserPetDB
@@ -32,6 +33,7 @@ class InsertUserFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_insert_user, container, false)
         val insertButton = view.findViewById<Button>(R.id.button_insert);
         insertButton.setOnClickListener {
+            view.let { (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(view.windowToken, 0) }
             val username = text_field_user.text.toString()
             GlobalScope.launch {
                 val id = db.userDao().insert(User(name = username))

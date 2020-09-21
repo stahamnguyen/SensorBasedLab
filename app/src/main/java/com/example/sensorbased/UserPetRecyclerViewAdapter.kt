@@ -19,10 +19,9 @@ class UserPetRecyclerViewAdapter(private val data: MutableList<UserAndAllPets>) 
     }
 
     override fun onBindViewHolder(holder: UserPetViewHolder, position: Int) {
-        holder.user_name_text_view.text = data[position].user.name ?: "No owner name"
-        holder.pet_name_text_view.text = data[position].pets?.map { pet -> pet.name }
-            ?.joinToString { name -> name }
-            ?: "No pet"
+        holder.user_name_text_view.text = data[position].user.name
+        holder.pet_name_text_view.text = data[position].pets.map { pet -> pet.name }
+            .joinToString { name -> name }
     }
 
     override fun getItemCount(): Int {
@@ -39,11 +38,13 @@ class UserPetRecyclerViewAdapter(private val data: MutableList<UserAndAllPets>) 
 
     fun updatePet(pet: Pet) {
         val existingUsernames = data.map { it.user.name }
-        if (existingUsernames.contains(pet.ownerName)) {
+        if (existingUsernames.isEmpty()) {
+            updateUser(UserAndAllPets(User(name = pet.ownerName), mutableListOf(pet)))
+        }
+        if (existingUsernames.isNotEmpty() && existingUsernames.contains(pet.ownerName)) {
             val petsOfThatUser = data.first { it.user.name == pet.ownerName }.pets
-            println(petsOfThatUser)
-            println(pet.name)
-            if (!petsOfThatUser.contains(pet.name)) {
+            val petNamesOfThatUser = petsOfThatUser.map { it.name }
+            if (!petNamesOfThatUser.contains(pet.name)) {
                 petsOfThatUser.add(pet)
             }
         }
