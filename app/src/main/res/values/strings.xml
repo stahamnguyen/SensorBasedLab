@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name" translatable="false">Lab1</string>
-    <string name="button_label">CLICK ME</string>
-    <string name="small_text_even">Hello World!</string>
-    <string name="small_text_odd">Goodbye Summer</string>
+    <string name="app_name" translatable="false">Lab 14</string>
+    <string name="pet_label" translatable="false">Enter Pet\'s Name</string>
+    <string name="user_label" translatable="false">Enter User\'s Name</string>
+    <string name="owner_label" translatable="false">Enter Owner\'s Name</string>
+    <string name="insert_button_label" translatable="false">Insert</string>
+    <string name="user_name_label" translatable="false">User\'s name</string>
+    <string name="pet_name_label" translatable="false">Pet\'s name</string>
 </resources>
